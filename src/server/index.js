@@ -1,11 +1,13 @@
-var express = require('express');
-var app = express();
-app.use(express.static('public'));
+const express = require('express')
+const app = express()
+
+const credentials = {
+  key: process.env.CONSUMER_KEY,
+  secret: process.env.CONSUMER_SECRET
+}
 
 app.get('/', (req, res) => {
-  
+  res.send('Hi!')
 })
 
-var listener = app.listen(process.env.PORT, () => {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+app.listen(process.env.PORT)
