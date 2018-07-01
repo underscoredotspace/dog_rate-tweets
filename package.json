@@ -4,22 +4,15 @@
   "description": "Classifying cute dog tweets",
   "main": "src/server/index.js",
   "scripts": {
-    "start": "node src/server"
+    "start": "nodemon src/server"
   },
   "dependencies": {
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
-    "node-fetch": "^2.1.2"
+    "twit": "^2.2.10"
   },
-  "engines": {
-    "node": "8.x"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
-  },
-  "license": "MIT",
-  "keywords": [
-    "node",
-    "glitch",
-    "express"
-  ]
+  "license": "CC-BY-4.0",
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
 }
