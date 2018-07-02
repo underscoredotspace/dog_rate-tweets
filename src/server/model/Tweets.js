@@ -13,7 +13,7 @@ class Tweets {
     this.twit = new Twit(this.credentials)
     this.options = {
       screen_name: 'dog_rates', 
-      count: 10,
+      count: 100,
       trim_user: true,
       tweet_mode: 'extended'
     }
@@ -29,14 +29,14 @@ class Tweets {
       }
 
       this.squash(data).then(tweets_short => {
-        callback(null, data)
+        callback(null, tweets_short)
       })
     })
   }
 
-  squash(data) {
-    return new Promise((resolve) => {
-      const tweets_short = data.map(tweet => {
+  squash(tweets) {
+    return new Promise(function(resolve) {
+      const tweets_short = tweets.map(tweet => {
         const {created_at, id_str, full_text, retweet_count, favorite_count} = tweet
         const tweet_short = {created_at, id_str, full_text, retweet_count, favorite_count}
 
@@ -55,6 +55,7 @@ class Tweets {
             return media
           })
         }
+        return tweet_short
       })
 
       resolve(tweets_short)
