@@ -30,6 +30,6 @@ const parentElement = document.body
 
 getTweets().then(tweets => {
   tweets.forEach(tweet => {
-    parentElement.appendChild(newTweetElement(tweet, parentElement))
+    newTweetElement(tweet, parentElement)
   })
 })

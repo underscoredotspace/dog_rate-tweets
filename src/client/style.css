@@ -1,0 +1,30 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+.tweet {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: rgba(30, 144, 255, 0.1);
+}
+
+.tweet .media {
+  display: flex;
+  flex-flow: row nowrap;
+  max-height: 90vh;
+}
+
+.tweet .media img {
+  max-width: 90vh;
+  display: block;
+  flex: 1;
+  object-fit: cover;
+}

@@ -1,27 +1,25 @@
 const Twit = require('twit')
 
-require('dotenv').config()
-
 const credentials = {
   consumer_key: process.env.CONSUMER_KEY,
   consumer_secret: process.env.CONSUMER_SECRET
 }
 
-class Tweets {
+class Twitter {
   constructor() {
     this.credentials = Object.assign({app_only_auth:true}, credentials)
     this.twit = new Twit(this.credentials)
     this.options = {
       screen_name: 'dog_rates', 
-      count: 100,
+      count: 200,
       trim_user: true,
       tweet_mode: 'extended'
     }
   }
 
-  get(callback, since_id) {
-    const options = Object.assign({}, this.options)
-    if (since_id) { options = Object.assign(options, {since_id}) }
+  get(callback, max_id) {
+    let options = Object.assign({}, this.options)
+    if (max_id) { options = Object.assign(options, {max_id}) }
     this.twit.get('statuses/user_timeline', options, (err, data, response) => {
       if (err) {
         callback(err)
@@ -37,8 +35,8 @@ class Tweets {
   squash(tweets) {
     return new Promise(function(resolve) {
       const tweets_short = tweets.map(tweet => {
-        const {created_at, id_str, full_text, retweet_count, favorite_count} = tweet
-        const tweet_short = {created_at, id_str, full_text, retweet_count, favorite_count}
+        const {created_at, id_str, full_text, reply_count, quote_count, retweet_count, favorite_count} = tweet
+        const tweet_short = {created_at, id_str, full_text, reply_count, quote_count, retweet_count, favorite_count}
 
         if (tweet.extended_entities && tweet.extended_entities.media) {
           tweet_short.media = tweet.extended_entities.media.map(pic => {
@@ -63,4 +61,4 @@ class Tweets {
   }
 }
 
-module.exports = Tweets
+module.exports = Twitter
