@@ -1,4 +1,5 @@
 const Twit = require('twit')
+const idPad = require('../helpers/idPad')
 
 const credentials = {
   consumer_key: process.env.CONSUMER_KEY,
@@ -35,7 +36,8 @@ class Twitter {
   squash(tweets) {
     return new Promise(function(resolve) {
       const tweets_short = tweets.map(tweet => {
-        const {created_at, id_str, full_text, reply_count, quote_count, retweet_count, favorite_count} = tweet
+        const id_str = idPad(tweet.id_str)
+        const {created_at, full_text, reply_count, quote_count, retweet_count, favorite_count} = tweet
         const tweet_short = {created_at, id_str, full_text, reply_count, quote_count, retweet_count, favorite_count}
 
         if (tweet.extended_entities && tweet.extended_entities.media) {

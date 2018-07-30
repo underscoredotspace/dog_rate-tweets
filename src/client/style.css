@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 *, *:before, *:after {
@@ -19,12 +20,20 @@ body {
 .tweet .media {
   display: flex;
   flex-flow: row nowrap;
-  max-height: 90vh;
+  max-height: 250px;
 }
 
 .tweet .media img {
-  max-width: 90vh;
+  max-width: 250px;
   display: block;
   flex: 1;
   object-fit: cover;
+}
+
+.favorite_count:before {
+  content: '❤️ ';
+}
+
+.retweet_count:before {
+  content: '♻️ ';
 }
